@@ -15,7 +15,18 @@ app.engine('handlebars',exphbs.engine())
 app.set('view engine','handlebars')
 /*-------------------------------------------------------------------*/
 
+app.get('/listar', async (req,res)=>{
+    const dados = await Usuario.findAll({raw:true})
+    console.log(dados)
+    console.log(dados.nome)
+    console.log(dados[0].nome)
+    console.log(dados[1].id)
+    res.redirect('/')
+})
 
+app.get('/', (req,res)=>{
+    res.end('Teste de dados')
+})
 
 /*-------------------------------------------------------------------*/
 conn.sync().then(()=>{
